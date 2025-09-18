@@ -3,39 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Chatbase Chatbot</title>
+  <title>Premium Chatbot</title>
   <style>
     body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      /* Luxury gold-silver gradient background */
+      background: linear-gradient(135deg, #d4af37, #c0c0c0); 
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
-      background: #f9f9f9;
-      font-family: Arial, sans-serif;
+    }
+
+    .chatbot-container {
+      width: 85%;
+      max-width: 900px;
+      height: 85vh;
+      background: rgba(255, 215, 0, 0.2); /* subtle gold transparency */
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+      display: flex;
       flex-direction: column;
+      overflow: hidden;
+      backdrop-filter: blur(12px); /* frosted glass effect */
+      border: 1px solid rgba(255, 215, 0, 0.5); /* metallic border */
     }
-    h2, p {
-      margin: 5px;
+
+    .chatbot-header {
+      background: rgba(192, 192, 192, 0.7); /* silver metallic header */
+      color: #333;
+      padding: 16px 20px;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
+
     iframe {
-      width: 80%;
-      height: 600px;
+      flex: 1;
       border: none;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      border-radius: 12px;
+      width: 100%;
+      background: transparent;
+    }
+
+    .footer {
+      background: rgba(255, 215, 0, 0.3); /* gold footer */
+      padding: 10px;
+      font-size: 13px;
+      text-align: center;
+      color: #1a1a1a;
+      border-top: 1px solid rgba(192, 192, 192, 0.5); /* silver border */
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
-  <h2>Welcome to Kisan Dost</h2>
-  <p>Ask me anything </p>
+  <div class="chatbot-container">
+    <div class="chatbot-header">
+      Kisan Dost
+    </div>
 
-  <!-- Direct Embed of Chatbase -->
-  <iframe 
-    src="https://www.chatbase.co/chatbot-iframe/GW-1qYlwOuhSwdMQmZVKZ"
-    allow="clipboard-read; clipboard-write; microphone">
-  </iframe>
+    <!-- Chatbase Chatbot -->
+    <iframe 
+      src="https://www.chatbase.co/chatbot-iframe/GW-1qYlwOuhSwdMQmZVKZ"
+      allow="clipboard-read; clipboard-write; microphone">
+    </iframe>
 
+    <div class="footer">
+     Powered by CodeNova
+    </div>
+  </div>
 </body>
 </html>
