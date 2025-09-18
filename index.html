@@ -4,25 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Chatbase Chatbot</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f9f9f9;
+      font-family: Arial, sans-serif;
+      flex-direction: column;
+    }
+    h2, p {
+      margin: 5px;
+    }
+    iframe {
+      width: 80%;
+      height: 600px;
+      border: none;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Welcome to My Chatbot</h2>
-  <p>Ask me anything below 👇</p>
+  <h2>Welcome to Kisan Dost</h2>
+  <p>Ask me anything </p>
 
-  <!-- Chatbase Embed Code -->
-  <script>
-    window.embeddedChatbotConfig = {
-      chatbotId: "GW-1qYlwOuhSwdMQmZVKZ", // replace with your chatbot id
-      domain: "www.chatbase.co"
-    }
-  </script>
-  <script
-    src="https://www.chatbase.co/embed.min.js"
-    chatbotId="GW-1qYlwOuhSwdMQmZVKZ"
-    domain="www.chatbase.co"
-    defer>
-  </script>
-  <!-- End Chatbase Embed Code -->
+  <!-- Direct Embed of Chatbase -->
+  <iframe 
+    src="https://www.chatbase.co/chatbot-iframe/GW-1qYlwOuhSwdMQmZVKZ"
+    allow="clipboard-read; clipboard-write; microphone">
+  </iframe>
 
 </body>
 </html>
