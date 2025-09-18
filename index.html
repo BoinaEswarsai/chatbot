@@ -1,237 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Chatbot - Blank Page</title>
-
-  <!-- Basic styling: clean, centered, accessible -->
-  <style>
-    :root{
-      --bg: #f6f7fb;
-      --panel: #ffffff;
-      --accent: #2563eb;
-      --muted: #6b7280;
-      --msg-in: #eef2ff;
-      --msg-out: #e6f7ef;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    html,body{height:100%; margin:0; background:var(--bg); color:#111827;}
-    .app {
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      box-sizing:border-box;
-    }
-
-    .chat-shell {
-      width:100%;
-      max-width:880px;
-      height:80vh;
-      background:var(--panel);
-      border-radius:14px;
-      box-shadow:0 8px 32px rgba(15,23,42,0.06);
-      display:flex;
-      flex-direction:column;
-      overflow:hidden;
-    }
-
-    /* header */
-    .chat-header{
-      padding:16px 20px;
-      border-bottom:1px solid rgba(15,23,42,0.05);
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .brand {
-      width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#60a5fa,#2563eb);
-      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;
-      font-size:14px;
-    }
-    .title {font-weight:600;}
-    .subtitle {font-size:13px;color:var(--muted);}
-
-    /* messages area */
-    .messages {
-      flex:1;
-      padding:20px;
-      overflow:auto;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      background:
-        linear-gradient(180deg, rgba(37,99,235,0.01), transparent 30%);
-    }
-
-    .msg {
-      max-width:78%;
-      padding:10px 12px;
-      border-radius:12px;
-      line-height:1.35;
-      word-break:break-word;
-      box-shadow:0 1px 0 rgba(0,0,0,0.02);
-    }
-    .msg.user { align-self:flex-end; background:var(--msg-out); border-bottom-right-radius:4px; }
-    .msg.bot  { align-self:flex-start; background:var(--msg-in); border-bottom-left-radius:4px; }
-
-    .meta { font-size:12px; color:var(--muted); margin-top:6px; }
-
-    /* input area */
-    .composer {
-      display:flex;
-      gap:12px;
-      padding:12px;
-      border-top:1px solid rgba(15,23,42,0.04);
-      align-items: center;
-    }
-    .input {
-      flex:1;
-      display:flex;
-      gap:8px;
-      align-items:center;
-      background: #f3f4f6;
-      padding:8px;
-      border-radius:10px;
-    }
-    .input textarea{
-      width:100%;
-      min-height:36px;
-      max-height:120px;
-      resize:none;
-      border:0;
-      background:transparent;
-      font-size:14px;
-      font-family:inherit;
-      outline:none;
-    }
-    .btn {
-      background:var(--accent);
-      color:white;
-      border:0;
-      padding:10px 14px;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:600;
-      font-size:14px;
-    }
-    .btn:disabled{ opacity:0.6; cursor:default; }
-
-    /* small screens */
-    @media (max-width:420px){
-      .chat-shell{ height:92vh; border-radius:10px; }
-      .messages{ padding:12px; }
-      .chat-header{ padding:12px; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Chatbase Chatbot</title>
 </head>
 <body>
-  <div class="app">
-    <main class="chat-shell" role="application" aria-label="Chatbot">
-      <header class="chat-header">
-        <div class="brand" aria-hidden="true">CB</div>
-        <div>
-          <div class="title">My Chatbot</div>
-          <div class="subtitle">A blank page to plug in your chatbot</div>
-        </div>
-      </header>
+  <h2>Welcome to My Chatbot</h2>
+  <p>Ask me anything below 👇</p>
 
-      <!-- Messages container: where chat messages will appear -->
-      <section id="messages" class="messages" aria-live="polite" aria-atomic="false">
-        <!-- Example initial bot message (comment out if you want fully blank) -->
-        <!-- <div><div class="msg bot">Hello — I am ready. Ask me anything.</div></div> -->
-      </section>
-
-      <!-- Composer: user input + send -->
-      <div class="composer" role="region" aria-label="Message composer">
-        <div class="input">
-          <textarea id="input" aria-label="Type your message" placeholder="Type a message and press Enter..."></textarea>
-        </div>
-        <button id="sendBtn" class="btn" title="Send message">Send</button>
-      </div>
-    </main>
-  </div>
-
-  <!-- Minimal JavaScript: local chat UI and placeholders to integrate real backend -->
+  <!-- Chatbase Embed Code -->
   <script>
-    // Elements
-    const messagesEl = document.getElementById('messages');
-    const inputEl = document.getElementById('input');
-    const sendBtn = document.getElementById('sendBtn');
-
-    // helper: append message
-    function appendMessage({role='bot', text=''}) {
-      const wrap = document.createElement('div');
-      const msg = document.createElement('div');
-      msg.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
-      msg.textContent = text;
-      wrap.appendChild(msg);
-
-      // optional meta (timestamp)
-      const meta = document.createElement('div');
-      meta.className = 'meta';
-      const t = new Date();
-      meta.textContent = (role === 'user' ? 'You • ' : 'Bot • ') + t.toLocaleTimeString();
-      wrap.appendChild(meta);
-
-      messagesEl.appendChild(wrap);
-      messagesEl.scrollTop = messagesEl.scrollHeight;
+    window.embeddedChatbotConfig = {
+      chatbotId: "GW-1qYlwOuhSwdMQmZVKZ", // replace with your chatbot id
+      domain: "www.chatbase.co"
     }
-
-    // send flow: currently uses a stub "echo" bot. Replace this with your API/WebSocket.
-    async function sendMessage() {
-      const text = inputEl.value.trim();
-      if (!text) return;
-      inputEl.value = '';
-      appendMessage({role:'user', text});
-
-      // show a temporary "thinking" message id so you can replace it later
-      const thinking = document.createElement('div');
-      thinking.className = 'msg bot';
-      thinking.textContent = '...';
-      const thinkWrap = document.createElement('div');
-      thinkWrap.appendChild(thinking);
-      messagesEl.appendChild(thinkWrap);
-      messagesEl.scrollTop = messagesEl.scrollHeight;
-
-      // ---- Replace this block with real request to your chatbot ----
-      // Example: POST to your /api/chat endpoint returning { reply: "..." }
-      // const resp = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ message: text })});
-      // const data = await resp.json();
-      // const botReply = data.reply || 'No reply';
-      // ------------------------------------------------------------
-
-      // Simple local echo with delay for demo
-      await new Promise(r => setTimeout(r, 500)); // simulate latency
-      const botReply = "Echo: " + text;
-
-      // remove thinking and add real reply
-      messagesEl.removeChild(thinkWrap);
-      appendMessage({role:'bot', text: botReply});
-    }
-
-    // send on Enter (Shift+Enter for new line)
-    inputEl.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
-      }
-    });
-
-    sendBtn.addEventListener('click', sendMessage);
-
-    // Optional initialization for a real-time socket:
-    // function initSocket() {
-    //   const ws = new WebSocket('wss://your-server.example/chat');
-    //   ws.onopen = () => console.log('socket open');
-    //   ws.onmessage = (evt) => appendMessage({role:'bot', text: evt.data});
-    //   // to send: ws.send(JSON.stringify({message: 'hi'}));
-    // }
-
-    // Accessibility: focus input on load
-    window.addEventListener('load', () => inputEl.focus());
   </script>
+  <script
+    src="https://www.chatbase.co/embed.min.js"
+    chatbotId="YOUR_CHATBASE_CHATBOT_ID"
+    domain="www.chatbase.co"
+    defer>
+  </script>
+  <!-- End Chatbase Embed Code -->
+
 </body>
 </html>
